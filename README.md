@@ -62,3 +62,31 @@ tfenv use 0.15.5
 - Identifiers
 - Comments
 
+1.6 Providers
+- [Providers [Teoria]](https://www.youtube.com/watch?v=TQy5nOfKzFw&ab_channel=4Zuppers)
+- [Providers](https://www.terraform.io/language/providers)
+- [AWS Provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
+
+## Comandos
+```bash
+# 
+terraform init
+
+#
+terraform plan
+
+#
+terraform apply
+
+#
+terraform plan -out="plan.out"
+
+#
+terraform validate
+
+#
+terraform fmt
+
+#
+terraform destroy
+```
