@@ -67,6 +67,21 @@ tfenv use 0.15.5
 - [Providers](https://www.terraform.io/language/providers)
 - [AWS Provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
 
+1.7 Workflow
+- [Workflow [Teoria]](https://www.youtube.com/watch?v=5XWpJl-MD0Q&ab_channel=4Zuppers)
+- [The Core Terraform Workflow](https://www.terraform.io/intro/core-workflow)
+
+1.8 Variáveis
+- [Variáveis [Teoria]](https://www.youtube.com/watch?v=C5heMaYkx5w&ab_channel=4Zuppers)
+- [Input Variables](https://www.terraform.io/language/values/variables)
+- as variáveis tem uma precedência que é:
+  - variáveis de ambiente
+  - arquivo terraform.tfvars
+  - arquivo terraform.tfvars.json 
+  - `*.auto.tfvars` ou `*.auto.tfvars.json`
+  - `-var` e `-var-file` da linha da comando
+- exemplo de variável na linha de comando: `terraform plan -var="instance_type=t2-micro"`
+
 ## Comandos
 ```bash
 # 
@@ -89,4 +104,8 @@ terraform fmt
 
 #
 terraform destroy
+
+# 
+terraform plan -var="instance_type=t2-micro"
+
 ```

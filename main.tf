@@ -9,7 +9,7 @@ terraform {
 
 # Configure the AWS Provider
 provider "aws" {
-  region                      = "us-east-1"
+  region                      = var.aws_region
   skip_credentials_validation = true
   skip_requesting_account_id  = true
   skip_metadata_api_check     = true
@@ -19,10 +19,8 @@ provider "aws" {
 }
 
 resource "aws_instance" "curso-terraform" {
-  ami           = "ami=0c2b8ca1dad447f8a"
-  instance_type = "t3.micro"
+  ami           = var.ami_instance
+  instance_type = var.instance_type
 
-  tags = {
-    Name = "curso-terraform"
-  }
+  tags          = var.tags 
 }
