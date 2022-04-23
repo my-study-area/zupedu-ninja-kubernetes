@@ -87,6 +87,25 @@ tfenv use 0.15.5
 - [»Interpolation Syntax](https://www.terraform.io/language/configuration-0-11/interpolation)
 - [random_string (Resource)](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string)
 
+1.10 Terraform Console e Outputs
+- [Terraform Console e Outputs [Teoria]](https://www.youtube.com/watch?v=TzPjrxxadA4&ab_channel=4Zuppers)
+- [Command: console](https://www.terraform.io/cli/commands/console)
+- [Output Values](https://www.terraform.io/language/values/outputs)
+```bash
+# gerencia o state file do projeto, mas no nosso caso estamos 
+# consultando os nossos recursos
+terraform state list
+
+# entra no console
+terraform console
+
+# dentro do console, lista as informações do recurso
+aws_instance.curso-terraform
+
+# uma das opções para carregar as modificações adicionadas
+# através da adição de um output
+terraform apply --auto-approve
+```
 ## Comandos
 ```bash
 # 
