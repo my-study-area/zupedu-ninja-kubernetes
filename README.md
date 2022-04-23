@@ -106,6 +106,38 @@ aws_instance.curso-terraform
 # através da adição de um output
 terraform apply --auto-approve
 ```
+
+1.11 Locals
+- [Locals [Teoria]](https://www.youtube.com/watch?v=vrLjIANhsYo&ab_channel=4Zuppers)
+- No uso `Input Variables`, não podemos utilizar uma variável dentro de outra variável, neste caso utilizamos `Local Values`
+- [Local Values](https://www.terraform.io/language/values/locals)
+- [The count Meta-Argument](https://www.terraform.io/language/meta-arguments/count)
+- O meta argumento `count` é usado em módulos e recursos, por exemplo, na criação de instâncias. Nos blocos de código que adicionamos o `count` temos acesso ao index de cada instância criada.
+```bash
+resource "aws_instance" "server" {
+  count = 4 # create four similar EC2 instances
+
+  ami           = "ami-a1b2c3d4"
+  instance_type = "t2.micro"
+
+  tags = {
+    Name = "Server ${count.index}"
+  }
+}
+```
+- [Splat Expressions](https://www.terraform.io/language/expressions/splat)
+- `Splat Expressions` são utilizadas no output quando temos mais de uma instânica criada. Nos exemplos anteriores, somente foi utilizado uma instância e quando temos mais de uma instância não é possível identificar qual instância está sendo referenciada no output. Para resolver este problema utilizamos a Splat Expressions. Ex:
+```bash
+# antes
+output "instance_p_addr" {
+  value = aws_instance.curso-terraform.public_ip
+}
+
+#depois
+output "instance_p_addr" {
+  value = aws_instance.curso-terraform.*.public_ip
+}
+```
 ## Comandos
 ```bash
 # 
@@ -142,3 +174,6 @@ aws ec2 describe-instances \
   --query "Reservations[*].Instances[*].\
   {State:State.Name,Tag:Tags[*].Value}[]"
 ```
+
+# Links
+- [HashCorp Learn](https://learn.hashicorp.com/terraform)

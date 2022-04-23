@@ -19,14 +19,20 @@ provider "aws" {
 }
 
 resource "random_string" "random" {
-  length = 4
+  count   = local.container_count
+  length  = 4
   special = false
+  upper   = false
 }
 resource "aws_instance" "curso-terraform" {
+  count = local.container_count
   ami           = var.ami_instance
   instance_type = var.instance_type
 
-  tags          = {
-    Name = "curso-terraform-${var.environment}-${random_string.random.id}"
-  }
+  tags          = merge(
+    local.tags,
+    {
+      Name = "curso-terraform-${var.environment[count.index]}-${random_string.random[count.index].id}"
+    }
+  )
 }

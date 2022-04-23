@@ -23,6 +23,6 @@ variable "tags" {
 }
 
 variable "environment" {
-  type = string
-  default = "dev"
+  type = list
+  default = ["dev","prod"]
 }
