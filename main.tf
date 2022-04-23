@@ -18,9 +18,15 @@ provider "aws" {
   }
 }
 
+resource "random_string" "random" {
+  length = 4
+  special = false
+}
 resource "aws_instance" "curso-terraform" {
   ami           = var.ami_instance
   instance_type = var.instance_type
 
-  tags          = var.tags 
+  tags          = {
+    Name = "curso-terraform-${var.environment}-${random_string.random.id}"
+  }
 }

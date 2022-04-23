@@ -21,3 +21,8 @@ variable "tags" {
     Environment = "dev"
   }
 }
+
+variable "environment" {
+  type = string
+  default = "dev"
+}

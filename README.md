@@ -82,6 +82,11 @@ tfenv use 0.15.5
   - `-var` e `-var-file` da linha da comando
 - exemplo de variável na linha de comando: `terraform plan -var="instance_type=t2-micro"`
 
+1.9 Interpolação
+- [Interpolação [Teoria]](https://www.youtube.com/watch?v=sRQj46yE3VQ&ab_channel=4Zuppers)
+- [»Interpolation Syntax](https://www.terraform.io/language/configuration-0-11/interpolation)
+- [random_string (Resource)](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string)
+
 ## Comandos
 ```bash
 # 
@@ -108,4 +113,13 @@ terraform destroy
 # 
 terraform plan -var="instance_type=t2-micro"
 
+# lista as instâncias
+aws ec2 describe-instances \
+  --endpoint-url http://localhost:4566
+
+# lista as instância exibindo o nome e a Tag
+aws ec2 describe-instances \
+  --endpoint-url http://localhost:4566 \
+  --query "Reservations[*].Instances[*].\
+  {State:State.Name,Tag:Tags[*].Value}[]"
 ```
