@@ -146,6 +146,22 @@ output "instance_p_addr" {
 - [Backends](https://www.terraform.io/language/settings/backends)
 - Nunca salve o arquivo tfstate no controle de versão, possui informações sensíveis que podem ser utilizadas por um atacante
 
+1.13 Count
+- [Count [Teoria]](https://www.youtube.com/watch?v=JyfjC9Q433I&ab_channel=4Zuppers)
+- [The count Meta-Argument](https://www.terraform.io/language/meta-arguments/count)
+```bash
+resource "aws_instance" "server" {
+  count = 4 # create four similar EC2 instances
+
+  ami           = "ami-a1b2c3d4"
+  instance_type = "t2.micro"
+
+  tags = {
+    Name = "Server ${count.index}"
+  }
+}
+```
+
 ## Comandos
 ```bash
 # 
