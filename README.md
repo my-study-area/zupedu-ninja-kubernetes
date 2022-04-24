@@ -138,6 +138,14 @@ output "instance_p_addr" {
   value = aws_instance.curso-terraform.*.public_ip
 }
 ```
+
+1.12 State e Remote State
+- [State e Remote State [Teoria]](https://www.youtube.com/watch?v=_nWsEkxhFgk&ab_channel=4Zuppers)
+- [State](https://www.terraform.io/language/state)
+- [Remote State](https://www.terraform.io/language/state/remote)
+- [Backends](https://www.terraform.io/language/settings/backends)
+- Nunca salve o arquivo tfstate no controle de versão, possui informações sensíveis que podem ser utilizadas por um atacante
+
 ## Comandos
 ```bash
 # 
@@ -164,6 +172,9 @@ terraform destroy
 # 
 terraform plan -var="instance_type=t2-micro"
 
+# mostra o estado atual ou salvo no plan
+terraform show
+
 # lista as instâncias
 aws ec2 describe-instances \
   --endpoint-url http://localhost:4566
@@ -173,6 +184,10 @@ aws ec2 describe-instances \
   --endpoint-url http://localhost:4566 \
   --query "Reservations[*].Instances[*].\
   {State:State.Name,Tag:Tags[*].Value}[]"
+
+# verifica o bucket criado no localstack
+aws s3api list-buckets --query "Buckets[].Name" \
+  --endpoint-url=http://localhost:4566
 ```
 
 # Links
