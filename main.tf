@@ -52,3 +52,10 @@ resource "aws_instance" "curso-terraform" {
     }
   )
 }
+
+resource "aws_s3_bucket" "s3-bucket" {
+  for_each = local.buckets
+  bucket = each.value.acl
+
+  tags = local.tags
+}

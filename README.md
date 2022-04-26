@@ -162,6 +162,10 @@ resource "aws_instance" "server" {
 }
 ```
 
+1.14 For Each
+- [For Each [Teoria]](https://www.youtube.com/watch?v=CPdBPwb6NuU&ab_channel=4Zuppers)
+- [The for_each Meta-Argument](https://www.terraform.io/language/meta-arguments/for_each)
+
 ## Comandos
 ```bash
 # 
