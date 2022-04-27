@@ -26,3 +26,34 @@ variable "environment" {
   type = list
   default = ["dev","prod"]
 }
+
+variable "environment2" {
+}
+
+variable "instance_number" {
+  type = object(
+    {
+      dev = number
+      prod = number
+    }
+  )
+
+  default = {
+    dev = 1
+    prod = 2
+  }
+}
+
+variable "instance_type2" {
+  type = object(
+    {
+      dev = string
+      prod = string
+    }
+  )
+
+  default = {
+    dev = "t2.micro"
+    prod = "t3.micro"
+  }
+}

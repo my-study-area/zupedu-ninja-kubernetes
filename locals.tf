@@ -13,4 +13,6 @@ locals {
       acl = "public-read"
     }
   }
+
+  instance_number = lookup(var.instance_number, var.environment2)
 }

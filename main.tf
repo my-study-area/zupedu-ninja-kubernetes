@@ -59,3 +59,16 @@ resource "aws_s3_bucket" "s3-bucket" {
 
   tags = local.tags
 }
+
+resource "aws_instance" "instancia-fuctions" {
+  count = local.instance_number
+  ami = var.ami_instance
+  instance_type = lookup(var.instance_type2, var.environment2)
+
+  tags = merge(
+    local.tags,
+    {
+      Name = "terraform-functions-${var.environment2}-${count.index}"
+    }
+  )
+}

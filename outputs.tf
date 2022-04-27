@@ -9,3 +9,7 @@ output "instance_name" {
 output "bucket_domain" {
   value = {for k,v in aws_s3_bucket.s3-bucket : k => v.bucket_domain_name}
 }
+
+output "names" {
+  value = join(", ", aws_instance.instancia-fuctions.*.tags.Name)
+}

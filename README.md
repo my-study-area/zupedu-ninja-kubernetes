@@ -166,6 +166,13 @@ resource "aws_instance" "server" {
 - [For Each [Teoria]](https://www.youtube.com/watch?v=CPdBPwb6NuU&ab_channel=4Zuppers)
 - [The for_each Meta-Argument](https://www.terraform.io/language/meta-arguments/for_each)
 
+1.15 Built in Functions
+- [Built in Functions [Teoria]](https://www.youtube.com/watch?v=Ca_8OyDXQp8&ab_channel=4Zuppers)
+- [Built-in Functions](https://www.terraform.io/language/functions)
+- [lookup Function](https://www.terraform.io/language/functions/lookup)
+- [merge Function](https://www.terraform.io/language/functions/merge)
+- [join Function](https://www.terraform.io/language/functions/join)
+
 ## Comandos
 ```bash
 # 
