@@ -290,3 +290,4 @@ aws ec2 describe-images \
 
 # Links
 - [HashCorp Learn](https://learn.hashicorp.com/terraform)
+- [Localstack configuration from Terraform documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/custom-service-endpoints#localstack)
