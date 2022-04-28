@@ -13,3 +13,8 @@ output "bucket_domain" {
 output "names" {
   value = join(", ", aws_instance.instancia-fuctions.*.tags.Name)
 }
+
+
+output "instance_data_source" {
+  value = aws_instance.instance-data-source.tags.Name
+}

@@ -173,6 +173,58 @@ resource "aws_instance" "server" {
 - [merge Function](https://www.terraform.io/language/functions/merge)
 - [join Function](https://www.terraform.io/language/functions/join)
 
+1.16 Data Sources
+- [Data Soource](https://www.terraform.io/language/data-sources)
+- [Data Sources [Teoria]](https://www.youtube.com/watch?v=Ykx6QlVk_3A&ab_channel=4Zuppers)
+- [Data Source: aws_ami](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami)
+- [Data Source](https://registry.terraform.io/providers/hashicorp/http/latest/docs/data-sources/http)
+```json
+data "aws_ami" "amazon-linux" {
+  owners = ["amazon"]
+  # owners = ["*"]
+  most_recent = true
+  filter {
+    name = "name"
+
+    values = [
+      # "amzn2-ami-hvn-2.0*-x86_64-gp2"
+      "Windows*"
+    ]
+  }
+}
+```
+Filtro equivalente realizado via linha de comando:
+```bash
+#
+aws ec2 describe-images \
+  --endpoint-url=http://localhost:4566 \
+  --owners "amazon" \
+  --filters="Name=name,Values=Windows*" | jq
+```
+
+```json
+resource "aws_security_group_rule" "sg-curso-terraform" {
+  type = "ingress"
+  from_port = 443
+  to_port = 443
+  protocol = "tcp"
+  cidr_blocks = [ "${chomp(data.http.myip.body)}/32"]
+  security_group_id = "sg-d92a9f2e13def8968"
+}
+```
+Comando utilizado para criar e ter acesso ao security_group_id
+```bash
+# cria um security_group
+aws ec2 create-security-group \
+  --endpoint-url http://localhost:4566 \
+  --group-name SSHAccess \
+  --description "Security group for SSH access" \
+  --vpc-id vpc-6674dfc5
+
+aws ec2 describe-security-groups \
+  --endpoint-url http://localhost:4566 | jq
+
+```
 ## Comandos
 ```bash
 # 
@@ -215,6 +267,25 @@ aws ec2 describe-instances \
 # verifica o bucket criado no localstack
 aws s3api list-buckets --query "Buckets[].Name" \
   --endpoint-url=http://localhost:4566
+
+# lista as instâncias filtrando com status running
+# e exibindo o campo State e InstanceId
+aws ec2 describe-instances \
+  --endpoint-url http://localhost:4566 \
+  --query "Reservations[*].Instances[*].{State:State.Name,InstanceId:InstanceId}" \
+  --filters "Name=instance-state-name,Values=running" | jq
+
+#
+aws ec2 describe-images \
+  --endpoint-url=http://localhost:4566 \
+  --query="Images[*].{ImageId:ImageId,OwnerId:OwnerId}" | jq
+
+#
+aws ec2 describe-images \
+  --endpoint-url=http://localhost:4566 \
+  --query="Images[*].{ImageId:ImageId,OwnerId:OwnerId}" \
+  --filters="Name=owner-id,Values=801119661308" | jq
+
 ```
 
 # Links

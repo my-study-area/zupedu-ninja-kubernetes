@@ -72,3 +72,12 @@ resource "aws_instance" "instancia-fuctions" {
     }
   )
 }
+
+resource "aws_instance" "instance-data-source" {
+  ami = data.aws_ami.amazon-linux.id
+  instance_type = "t2.micro"
+  tags = {
+    Name = "curso-terraform-data-source"
+    Environment = "Terraform"
+  }
+}
