@@ -27,8 +27,8 @@ variable "environment" {
   default = ["dev","prod"]
 }
 
-variable "environment2" {
-}
+# variable "environment2" {
+# }
 
 variable "instance_number" {
   type = object(

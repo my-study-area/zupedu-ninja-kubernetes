@@ -5,18 +5,18 @@ terraform {
       version = "~> 3.0"
     }
   }
-  backend "s3" {
-    bucket                      = "curso-terraform"
-    key                         = "terraform.tfstate"
-    region                      = "us-east-1"
-    endpoint                    = "http://localhost:4566"
-    skip_credentials_validation = true
-    skip_metadata_api_check     = true
-    force_path_style            = true
-    dynamodb_table              = "terraform_state"
-    dynamodb_endpoint           = "http://localhost:4566"
-    encrypt                     = true
-  }
+  # backend "s3" {
+  #   bucket                      = "curso-terraform"
+  #   key                         = "terraform.tfstate"
+  #   region                      = "us-east-1"
+  #   endpoint                    = "http://localhost:4566"
+  #   skip_credentials_validation = true
+  #   skip_metadata_api_check     = true
+  #   force_path_style            = true
+  #   dynamodb_table              = "terraform_state"
+  #   dynamodb_endpoint           = "http://localhost:4566"
+  #   encrypt                     = true
+  # }
 }
 
 # Configure the AWS Provider
@@ -41,63 +41,63 @@ resource "random_string" "random" {
   upper   = false
 }
 
-resource "random_string" "random2" {
-  count   = lookup(var.instance_number, terraform.workspace)
-  length  = 4
-  special = false
-  upper   = false
-}
-resource "aws_instance" "curso-terraform" {
-  count = local.container_count
-  ami           = var.ami_instance
-  instance_type = var.instance_type
+# resource "random_string" "random2" {
+#   count   = lookup(var.instance_number, terraform.workspace)
+#   length  = 4
+#   special = false
+#   upper   = false
+# }
+# resource "aws_instance" "curso-terraform" {
+#   count = local.container_count
+#   ami           = var.ami_instance
+#   instance_type = var.instance_type
 
-  tags          = merge(
-    local.tags,
-    {
-      Name = "curso-terraform-${var.environment[count.index]}-${random_string.random[count.index].id}"
-    }
-  )
-}
+#   tags          = merge(
+#     local.tags,
+#     {
+#       Name = "curso-terraform-${var.environment[count.index]}-${random_string.random[count.index].id}"
+#     }
+#   )
+# }
 
-resource "aws_s3_bucket" "s3-bucket" {
-  for_each = local.buckets
-  bucket = each.value.acl
+# resource "aws_s3_bucket" "s3-bucket" {
+#   for_each = local.buckets
+#   bucket = each.value.acl
 
-  tags = local.tags
-}
+#   tags = local.tags
+# }
 
-resource "aws_instance" "instancia-fuctions" {
-  count = local.instance_number
-  ami = var.ami_instance
-  instance_type = lookup(var.instance_type2, var.environment2)
+# resource "aws_instance" "instancia-fuctions" {
+#   count = local.instance_number
+#   ami = var.ami_instance
+#   instance_type = lookup(var.instance_type2, var.environment2)
 
-  tags = merge(
-    local.tags,
-    {
-      Name = "terraform-functions-${var.environment2}-${count.index}"
-    }
-  )
-}
+#   tags = merge(
+#     local.tags,
+#     {
+#       Name = "terraform-functions-${var.environment2}-${count.index}"
+#     }
+#   )
+# }
 
-resource "aws_instance" "instance-data-source" {
-  ami = data.aws_ami.amazon-linux.id
-  instance_type = "t2.micro"
-  tags = {
-    Name = "curso-terraform-data-source"
-    Environment = "Terraform"
-  }
-}
+# resource "aws_instance" "instance-data-source" {
+#   ami = data.aws_ami.amazon-linux.id
+#   instance_type = "t2.micro"
+#   tags = {
+#     Name = "curso-terraform-data-source"
+#     Environment = "Terraform"
+#   }
+# }
 
-resource "aws_instance" "instance-workspace" {
-  count         = lookup(var.instance_number, terraform.workspace)
-  ami           = var.ami_instance
-  instance_type = var.instance_type
+# resource "aws_instance" "instance-workspace" {
+#   count         = lookup(var.instance_number, terraform.workspace)
+#   ami           = var.ami_instance
+#   instance_type = var.instance_type
 
-  tags          = merge(
-    local.tags,
-    {
-      Name = "curso-terraform-workspace-${terraform.workspace}-${random_string.random2[count.index].id}"
-    }
-  )
-}
+#   tags          = merge(
+#     local.tags,
+#     {
+#       Name = "curso-terraform-workspace-${terraform.workspace}-${random_string.random2[count.index].id}"
+#     }
+#   )
+# }
