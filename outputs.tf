@@ -18,3 +18,7 @@ output "names" {
 output "instance_data_source" {
   value = aws_instance.instance-data-source.tags.Name
 }
+
+output "instance_worspace" {
+  value = aws_instance.instance-workspace.*.tags.Name
+}

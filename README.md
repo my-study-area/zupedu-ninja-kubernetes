@@ -225,6 +225,24 @@ aws ec2 describe-security-groups \
   --endpoint-url http://localhost:4566 | jq
 
 ```
+
+1.17 Workspaces
+- [Workspaces [Teoria]](https://www.youtube.com/watch?v=unHljv1Pb6g&ab_channel=4Zuppers)
+- [Workspaces](https://www.terraform.io/language/state/workspaces)
+```bash
+# lista os workspaces
+terraform workspace list
+
+# mostra o nome do workspace atual
+terraform workspace show
+
+# cria um workspace
+terraform workspace new <WORSPACE_NAME>
+
+# seleciona um workspace
+terraform workspace select <WORSPACE_NAME>
+```
+
 ## Comandos
 ```bash
 # 

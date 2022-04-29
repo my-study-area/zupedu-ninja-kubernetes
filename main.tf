@@ -40,6 +40,13 @@ resource "random_string" "random" {
   special = false
   upper   = false
 }
+
+resource "random_string" "random2" {
+  count   = lookup(var.instance_number, terraform.workspace)
+  length  = 4
+  special = false
+  upper   = false
+}
 resource "aws_instance" "curso-terraform" {
   count = local.container_count
   ami           = var.ami_instance
@@ -80,4 +87,17 @@ resource "aws_instance" "instance-data-source" {
     Name = "curso-terraform-data-source"
     Environment = "Terraform"
   }
+}
+
+resource "aws_instance" "instance-workspace" {
+  count         = lookup(var.instance_number, terraform.workspace)
+  ami           = var.ami_instance
+  instance_type = var.instance_type
+
+  tags          = merge(
+    local.tags,
+    {
+      Name = "curso-terraform-workspace-${terraform.workspace}-${random_string.random2[count.index].id}"
+    }
+  )
 }
