@@ -101,3 +101,10 @@ resource "random_string" "random" {
 #     }
 #   )
 # }
+
+module "ec2" {
+  source = "./ec2"
+  ec2_count = lookup(var.instance_number, terraform.workspace)
+  ec2_ami = var.ami_instance
+  ec2_type = var.instance_type
+}

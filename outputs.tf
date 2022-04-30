@@ -22,3 +22,7 @@
 # output "instance_worspace" {
 #   value = aws_instance.instance-workspace.*.tags.Name
 # }
+
+output "ec2_info" {
+  value = [for i in module.ec2[*]: i]
+}

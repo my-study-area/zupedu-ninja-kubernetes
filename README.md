@@ -243,6 +243,11 @@ terraform workspace new <WORSPACE_NAME>
 terraform workspace select <WORSPACE_NAME>
 ```
 
+1.18 Modules
+- [Modules [Teoria]](https://www.youtube.com/watch?v=1nH-izVYwfU&ab_channel=4Zuppers)
+- [Module Blocks](https://www.terraform.io/language/modules/syntax)
+
+
 ## Comandos
 ```bash
 # 
@@ -309,3 +314,4 @@ aws ec2 describe-images \
 # Links
 - [HashCorp Learn](https://learn.hashicorp.com/terraform)
 - [Localstack configuration from Terraform documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/custom-service-endpoints#localstack)
+- [Diagrams app](https://app.diagrams.net/)
