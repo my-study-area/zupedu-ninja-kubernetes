@@ -247,6 +247,8 @@ terraform workspace select <WORSPACE_NAME>
 - [Modules [Teoria]](https://www.youtube.com/watch?v=1nH-izVYwfU&ab_channel=4Zuppers)
 - [Module Blocks](https://www.terraform.io/language/modules/syntax)
 
+1.19 Questionário: Fundamentos sobre Terraform
+- [Perguntas e respostas](./fundamentos-sobre-terraform.pdf)
 
 ## Comandos
 ```bash
