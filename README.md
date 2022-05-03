@@ -250,6 +250,21 @@ terraform workspace select <WORSPACE_NAME>
 1.19 Questionário: Fundamentos sobre Terraform
 - [Perguntas e respostas](./fundamentos-sobre-terraform.pdf)
 
+## Desafio: Fundamentos sobre Terraform
+2.1 Introdução
+
+Precisamos executar alguns containers em determinados ambientes para atender certa demanda. Esses containers irão ajudar o time de desenvolvimento e por esse motivo, a opção "docker hosts", ou seja, instâncias com os binários do docker executando cargas de trabalho foi escolhida. Por ser um ambiente de desenvolvimento, ele pode ser destruído a qualquer momento e por isso precisamos garantir que a cada novo ambiente as coisas estejam como esperamos.
+
+Para garantir um start up rápido e confiável, o time optou por utilizar o Terraform. Com o cenário exposto assim como a ferramenta a ser utilizada, temos algumas atividades para deixar o ambiente do jeito que o dev gosta, vamos lá?
+
+2.1 Providers
+
+Primeiro, vamos configurar um novo diretório para o setup de algumas aplicações em docker, podemos chamá-lo de curso-terraform. Adicione um arquivo main.tf e configure o docker provider, seria bem legal se o versionamento de nosso projeto fosse versionado com o tfenv. Ao final, vamos salvar o estado de cada atividade em branch distinta em nosso git, podemos combinar o seguinte padrão, utilizando como exemplo essa atividade, a branch seria v1.0, ok?
+Não esqueça de seguir as melhores práticas ao salvar um projeto terraform na nuvem ;)
+
+- [Docker Provider](https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs)
+- [Terraform.gitignome](https://github.com/github/gitignore/blob/main/Terraform.gitignore)
+
 ## Comandos
 ```bash
 # 
@@ -317,3 +332,4 @@ aws ec2 describe-images \
 - [HashCorp Learn](https://learn.hashicorp.com/terraform)
 - [Localstack configuration from Terraform documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/custom-service-endpoints#localstack)
 - [Diagrams app](https://app.diagrams.net/)
+- [Docker Provider](https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs)
