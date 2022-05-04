@@ -265,6 +265,9 @@ Não esqueça de seguir as melhores práticas ao salvar um projeto terraform na 
 - [Docker Provider](https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs)
 - [Terraform.gitignome](https://github.com/github/gitignore/blob/main/Terraform.gitignore)
 
+2.2 Pull da imagem
+Agora precisamos fazer o pull da imagem public.ecr.aws/zup-academy/docusaurus-zup:latest, qual resource do provider Docker devemos utilizar? (Lembre-se que a documentação oficial sempre será sua melhor amiga), adicione o recurso no arquivo main.tf e execute o projeto. Não esqueça de salvar em uma nova branch (v1.1)
+
 ## Comandos
 ```bash
 # 
@@ -333,3 +336,4 @@ aws ec2 describe-images \
 - [Localstack configuration from Terraform documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/custom-service-endpoints#localstack)
 - [Diagrams app](https://app.diagrams.net/)
 - [Docker Provider](https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs)
+- [Docker Images](https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs/resources/image)
